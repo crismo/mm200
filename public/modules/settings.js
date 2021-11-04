@@ -6,7 +6,7 @@ export const REQUIERMENTS_SECTION_TEMPLATE_PATH =
 export const REQUIERMENTS_SECTION_ITEM_TEMPLATE_PATH =
 	"./views/requiermentsItemTemplate.html";
 
-export const ABOUT_TEMPLATE_PATH = "./views/abouteTemplate.html";
+export const ABOUT_TEMPLATE_PATH = "./views/aboutTemplate.html";
 
 // Constatn identificators for all requierment sets.
 export const REQUIERMENTS_ID = {

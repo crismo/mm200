@@ -43,6 +43,36 @@ const aboutAppAction = createAppNavElement("Om prosjektet", true, (e) => {
 	devLog("About app section triggerd");
 	clearContent();
 	setActive(aboutAppAction);
+	container.innerHTML = abouteTemplate;
+
+	document.getElementById("velgbt").onclick = (e) => {
+		const valg = document.getElementById("valg");
+		const name = document.getElementById("name").value;
+		const epost = document.getElementById("epost").value;
+		if (valg.selectedIndex && name && epost) {
+			const info = {
+				navn: name,
+				epost: epost,
+				valg: valg[valg.selectedIndex].value,
+			};
+
+			fetch("/valg", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(info),
+			}).then((data) => {
+				if (data.status === 200) {
+					alert("ok");
+				}
+			});
+		} else {
+			alert("Du må gjøre et valg og skrive inn stuff");
+		}
+
+		//terminal.options[terminal.selectedIndex]
+	};
 });
 
 const todoAppAction = createAppNavElement("ToDo App", false, (e) => {
