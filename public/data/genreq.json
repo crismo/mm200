@@ -1,0 +1,30 @@
+{
+	"id": "GENERIC",
+	"requierments": [
+		{
+			"title": "Generelle krav.",
+			"description": "Krav som gjelder uansett hvilken oppgave du velger og som må være fullført uansett.",
+			"items": [
+				{ "description": "Dokumentert prosjekt prossess." },
+				{ "description": "GitHub for source control." },
+				{
+					"description": "Normal usage of git for project work (branching, pull request)."
+				},
+				{ "description": "No third-party code (unless specifically allowed" },
+				{ "description": "Data persisted in a Postgres database." },
+				{
+					"description": "Documented REST API for communication between client and server."
+				},
+				{
+					"description": "No communication between client and server aside from REST API"
+				},
+				{ "description": "Not persisted password in plain text" },
+				{ "description": "JSON as data transport format." },
+				{ "description": "Responsive HTML5 client" },
+				{ "description": "The application must run on Heroku" },
+				{ "description": "The application must work in FireFox" },
+				{ "description": "Project report." }
+			]
+		}
+	]
+}

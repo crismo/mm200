@@ -1,0 +1,74 @@
+{
+	"id": "TODO",
+	"requierments": [
+		{
+			"title": "Minimums krav for å bli vurdert til C",
+			"description": "Alle disse elementene må være fullført for at en C skal kunne vurderes",
+			"items": [
+				{ "description": " Server API for Create / Delete / Update Lists" },
+				{
+					"description": " Server API for Create / Delete / Update List items"
+				},
+				{
+					"description": " Server API for Create / Delete / Update / Authenticate user accounts"
+				},
+				{
+					"description": " Server API for share/ unshare Lists (private/public)"
+				},
+				{
+					"description": " Client that can create / authenticate / delete users"
+				},
+				{ "description": " Client that can create / update / delete lists" },
+				{
+					"description": " Client that can create / update / delete list items."
+				},
+				{
+					"description": " Client that can facilitate sharing / unshare lists"
+				},
+				{
+					"description": " Client/server must require authentication when appropriate"
+				}
+			]
+		},
+		{
+			"title": "Minimums krav for å bli vurdert til B",
+			"description": "Alle disse elementene må være fullført samt alle elementer for C. Dersom man skal vurderes for en B",
+			"items": [
+				{ "description": " Share lists private/individual/public" },
+				{ "description": " Collect and report user metrics to the user" },
+				{
+					"description": " Deadlines for individual list items, with an appropriate feedback system"
+				},
+				{ "description": " Tagging of list items" },
+				{ "description": " Filtering of lists using tags." },
+				{
+					"description": " Filtered view of tasks (for instance show me all tasks due today)"
+				},
+				{ "description": " Assigning user to a task." },
+				{
+					"description": " Server code is modularly structured in an intuitive way."
+				},
+				{
+					"description": " Client code is modularly structured in an intuitive way."
+				}
+			]
+		},
+		{
+			"title": "Minimums krav for å bli vurdert til A",
+			"description": "De fleste av disse elementene må være fullført samt alle elementer for C & B. Dersom man skal vurderes for en A",
+			"items": [
+				{
+					"description": " Push notifications on task assignments, deadlines etc."
+				},
+				{
+					"description": " Email optional task digests to user. (task links in email should go directly to app task)"
+				},
+				{ "description": " PWA Client (must be done in a meaningful way)" },
+				{ "description": " Use google analytics to trac usage patterns." },
+				{ "description": " Application admin digest of errors." },
+				{ "description": " Overall clean and effective code." }
+			]
+		}
+	],
+	"description": "<h2>Task planner</h2><p>Task planners (To-do lists) are tools that let the end user write and edit tasks in some structured fashion. Functioning planners allow for actions like; scheduling, notification, grouping, filtering and tagging to name but a few.</p><p>The assignment is to create a web app and the accompanying server that is usable as a task planner tool.</p>"
+}

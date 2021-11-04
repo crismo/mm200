@@ -1,0 +1,90 @@
+{
+	"id": "PRESEMTATION",
+	"requierments": [
+		{
+			"title": "Minimums krav for å bli vurdert til C",
+			"description": "Alle disse elementene må være fullført for at en C skal kunne vurderes",
+			"items": [
+				{
+					"description": " Server API for Create / Delete / Update Presentations"
+				},
+				{ "description": " Server API for Create / Delete / Update Slides" },
+				{
+					"description": " Server API for Create / Delete / Update / Authenticate user accounts"
+				},
+				{
+					"description": " Server API for share/ unshare Presentations (private/public)"
+				},
+				{
+					"description": " Client that can create / authenticate / delete users"
+				},
+				{
+					"description": " Client that can create / update / delete presentations"
+				},
+				{
+					"description": " Client that can create / update / delete 3 different types of slides (Title, Image with text, List)."
+				},
+				{
+					"description": " Client that can facilitate sharing / unshare presentations"
+				},
+				{
+					"description": " Presentations look and feel should be based on a theme."
+				},
+				{
+					"description": " Client should have presentation mode and edit mode"
+				},
+				{
+					"description": " Client/server must require authentication when appropriate"
+				}
+			]
+		},
+		{
+			"title": "Minimums krav for å bli vurdert til B",
+			"description": "Alle disse elementene må være fullført samt alle elementer for C. Dersom man skal vurderes for en B",
+			"items": [
+				{ "description": " Share presentations private/individual/public" },
+				{ "description": " Collect and report user metrics to the user" },
+				{ "description": " Optional presenter notes for each slide" },
+				{
+					"description": " Server API for exporting presenter notes to markdown document."
+				},
+				{
+					"description": " Remote viewing client for presentation. i.e people should be able to see the presentation in real-time on their own screen. Note that they should only see the current slide."
+				},
+				{ "description": " Minimum of two themes for presentations" },
+				{ "description": " Support for YouTube embedded video in slide." },
+				{
+					"description": " Presentation mode should include an automatic paced playback mode."
+				},
+				{
+					"description": " Export presentation to single self-contained HTML file for offline usage."
+				},
+				{
+					"description": " Server code is modularly structured in an intuitive way."
+				},
+				{
+					"description": " Client code is modularly structured in an intuitive way."
+				}
+			]
+		},
+		{
+			"title": "Minimums krav for å bli vurdert til A",
+			"description": "De fleste av disse elementene må være fullført samt alle elementer for C & B. Dersom man skal vurderes for en A",
+			"items": [
+				{ "description": " Import presentation from exported HTML file." },
+				{
+					"description": " Optionally include slide thumbnails in export of presenter notes."
+				},
+				{
+					"description": " Users should be able to create their own themes for presentations."
+				},
+				{ "description": " PWA Client (must be done in a meaningful way)" },
+				{ "description": " Remote control client for live presentation" },
+				{ "description": " Use google analytics to trac usage patterns." },
+				{ "description": " Application admin digest of errors." },
+				{ "description": " Overall clean and effective code." }
+			]
+		}
+	],
+	"description": "<h2>Presentation app</h2><p>Presentation tools like Keynote, Powerpoint, Prezi and the like, are powerful tools with a lot of complexity. There are other, less complicated tools like Slides.com and Haiku Deck that achieves more or less the same thing.</p><p>This assignment is about creating a presentation tool for web/mobile more in line with the simplicity of the later.</p>"
+}

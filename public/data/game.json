@@ -1,0 +1,86 @@
+{
+	"id": "GAME",
+	"requierments": [
+		{
+			"title": "Minimums krav for å bli vurdert til C",
+			"description": "Alle disse elementene må være fullført for at en C skal kunne vurderes",
+			"items": [
+				{ "description": " Server API for Create / Delete / Update Games" },
+				{
+					"description": " Server API for Create / Delete / Update / Authenticate user accounts"
+				},
+				{ "description": " Server API for listing games (private/public)" },
+				{
+					"description": " Server API for text chat connected to game session."
+				},
+				{
+					"description": " Client that can create / authenticate / delete users"
+				},
+				{
+					"description": " Client that can play a distributed game of Santorini."
+				},
+				{ "description": " Client that allows for text chat when playing." },
+				{
+					"description": " Client that lists public available games and allows for joining."
+				},
+				{
+					"description": " Client that allows joining game via privately shared URL."
+				},
+				{ "description": " Look and feel of game should be theme based." },
+				{
+					"description": " Client/server must require authentication when appropriate"
+				}
+			]
+		},
+		{
+			"title": "Minimums krav for å bli vurdert til B",
+			"description": "Alle disse elementene må være fullført samt alle elementer for C. Dersom man skal vurderes for en B",
+			"items": [
+				{
+					"description": " Server API for listing games (private/individual/public)"
+				},
+				{
+					"description": " Server API for facilitating tournaments (roundrobin or elimination)"
+				},
+				{
+					"description": " Server functionality for calculating player ranking."
+				},
+				{ "description": " Server API for matching players." },
+				{ "description": " Additional game theme." },
+				{
+					"description": " Client that supports creating and running tournaments."
+				},
+				{
+					"description": " Client that supports starting game and finding appropriate challenger."
+				},
+				{
+					"description": " Client chat should include the possibility of audio taunts (must be possible to disable, audio taunt should then become visual in some way)"
+				},
+				{
+					"description": " Server code is modularly structured in an intuitive way."
+				},
+				{
+					"description": " Client code is modularly structured in an intuitive way."
+				}
+			]
+		},
+		{
+			"title": "Minimums krav for å bli vurdert til A",
+			"description": "De fleste av disse elementene må være fullført samt alle elementer for C & B. Dersom man skal vurderes for en A",
+			"items": [
+				{
+					"description": " All games can be transferred to play by email. (moves selected in email)"
+				},
+				{
+					"description": " Game and tournament setup can optionally include a max time per move. If time is exceeded the player looses the game."
+				},
+				{ "description": " Push notification for moves in ongoing games." },
+				{ "description": " PWA Client (must be done in a meaningful way)" },
+				{ "description": " Use google analytics to trac usage patterns." },
+				{ "description": " Application admin digest of errors." },
+				{ "description": " Overall clean and effective code." }
+			]
+		}
+	],
+	"description": "<h2>Game app</h2><p>There are more games online then you can shake a stick at. You are now going to contribute yet one more.</p><p>We are asking you to create your interpretation of the game Santorini. This is a fun two-player strategy game with few and simple rules that players quickly. Note that the 2016 version of Santorini as the option of asymmetrical player powers, we are not asking for this feature.</p><p>Info about the game and previous versions can be found at <a href='https://boardgamegeek.com/boardgame/194655/santorini'>https://boardgamegeek.com/boardgame/194655/santorini<a>/p>"
+}
