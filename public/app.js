@@ -70,8 +70,6 @@ const aboutAppAction = createAppNavElement("Om prosjektet", true, (e) => {
 		} else {
 			alert("Du må gjøre et valg og skrive inn stuff");
 		}
-
-		//terminal.options[terminal.selectedIndex]
 	};
 });
 
@@ -101,6 +99,15 @@ function baseAction(activeAction, dataset) {
 	clearContent();
 	setActive(activeAction);
 	container.innerHTML = dataset.description;
+
+	const downloadBT = document.createElement("button");
+	downloadBT.textContent = "⬇️ download";
+	downloadBT.onclick = (e) => {
+		download(`${dataset.id}.text`, container.innerText);
+	};
+
+	container.appendChild(downloadBT);
+
 	renderRequiermentSetUsingTemplate(
 		container,
 		requierments[REQUIERMENTS_ID.GENERIC_REQ],
@@ -136,3 +143,21 @@ function setActive(activeAction) {
 function clearContent() {
 	container.innerHTML = "";
 }
+
+function download(filename, text) {
+	var element = document.createElement("a");
+	element.setAttribute(
+		"href",
+		"data:text/plain;charset=utf-8," + encodeURIComponent(text)
+	);
+	element.setAttribute("download", filename);
+
+	element.style.display = "none";
+	document.body.appendChild(element);
+
+	element.click();
+
+	document.body.removeChild(element);
+}
+
+aboutAppAction.querySelector("button").click(this);

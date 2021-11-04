@@ -1,7 +1,7 @@
 const express = require("express");
 const DatabaseHandler = require("./modules/db.js");
 
-const db = new DatabaseHandler(process.env.DATABASE_URL);
+const db = new DatabaseHandler(process.env.DATABASE_URL || "sdfsdfds");
 const server = express();
 const PORT = process.env.PORT || 8080;
 
