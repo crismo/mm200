@@ -1,12 +1,16 @@
 // Is the app runing in developemnt mode?
 export const IS_DEV = true;
 
+export const IS_SIGNUP_ACTIVE = false;
+
 export const REQUIERMENTS_SECTION_TEMPLATE_PATH =
 	"./views/requiermentsSectionTemplate2.html";
 export const REQUIERMENTS_SECTION_ITEM_TEMPLATE_PATH =
 	"./views/requiermentsItemTemplate.html";
 
 export const ABOUT_TEMPLATE_PATH = "./views/aboutTemplate.html";
+export const ABOUT_TEMPLATE_NO_SIGNUP_PATH =
+	"./views/aboutNoSignupTemplate.html";
 
 // Constatn identificators for all requierment sets.
 export const REQUIERMENTS_ID = {

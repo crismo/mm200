@@ -1,7 +1,7 @@
 const express = require("express");
 const DatabaseHandler = require("./modules/db.js");
 
-const db = new DatabaseHandler(process.env.DATABASE_URL || "sdfsdfds");
+const db = new DatabaseHandler(process.env.DATABASE_URL || "local");
 const server = express();
 const PORT = process.env.PORT || 8080;
 
@@ -22,7 +22,11 @@ server.post("/valg", async (req, res, next) => {
 		!isNullOrEmpty(params.valg)
 	) {
 		try {
-			let respons = await db.insert(params.navn, params.epost, params.valg * 1);
+			let respons = await db.insertProjectChoice(
+				params.navn,
+				params.epost,
+				params.valg * 1
+			);
 			console.log(respons);
 			res.status(200).end();
 		} catch (error) {

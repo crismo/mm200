@@ -1,4 +1,5 @@
-const pg = require("pg");
+const { group } = require("console");
+const { Pool, Client } = require("pg");
 
 class DatabaseHandler {
 	#credentials = null;
@@ -9,26 +10,60 @@ class DatabaseHandler {
 		}
 		this.#credentials = {
 			connectionString,
-			ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
+			ssl: { rejectUnauthorized: false },
 		};
 	}
 
-	async insert(navn, epost, valg) {
-		const client = new pg.Client(this.#credentials);
+	async query(query, params) {
+		const client = new Client(this.#credentials);
 		let results = null;
 		try {
 			await client.connect();
-			results = await client.query(
-				'INSERT INTO "public"."valg"("navn", "epost", "valg") VALUES($1, $2, $3) RETURNING "id", "navn", "epost", "valg";',
-				[navn, epost, valg]
-			);
-			results = results.rows[0].id;
-			client.end();
+			results = await client.query(query, params);
+			results = results.rows;
 		} catch (err) {
-			client.end();
 			results = err;
+		} finally {
+			client.end();
 		}
 		return results;
+	}
+
+	async batchQuery(query, params) {
+		const respons = null;
+		const pool = new Pool(this.#credentials);
+		const client = await pool.connect();
+		try {
+			await client.query("BEGIN");
+			console.log();
+			params.forEach(async (paramSet) => {
+				console.log(paramSet);
+				const res = await client.query(query, paramSet);
+			});
+			await client.query("COMMIT");
+		} catch (e) {
+			await client.query("ROLLBACK");
+			respons = e;
+		} finally {
+			client.release();
+		}
+
+		return respons;
+	}
+
+	async insertProjectChoice(navn, epost, valg) {
+		const result = await this.query(
+			'INSERT INTO "public"."valg"("navn", "epost", "valg") VALUES($1, $2, $3) RETURNING "id";',
+			[navn, epost, valg]
+		);
+		return result instanceof Error ? result : result[0].id;
+	}
+
+	async insertGroups(groups) {
+		const result = await this.batchQuery(
+			'INSERT INTO "public"."groups"("id", "students", "password", "project") VALUES($1, $2, $3, $4) RETURNING *;',
+			groups
+		);
 	}
 }
 module.exports = DatabaseHandler;

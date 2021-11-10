@@ -2,7 +2,7 @@ import { devLog } from "./log.js";
 
 export async function quickLoadJSON(keysAndUrls) {
 	const data = {};
-	const targets = Object.entries(keysAndUrls)
+	const targets = Object.entries(keysAndUrls);
 	devLog("Loading", ...targets);
 	for (const target of targets) {
 		const key = target[0];
@@ -23,11 +23,23 @@ export async function quickLoadeTemplate(target) {
 	devLog("Currently loading template from", target);
 	let template = null;
 	try {
-		template = await fetch(target).then((data) => data.text());	
+		template = await fetch(target).then((data) => data.text());
 	} catch (err) {
 		console.error(err);
 	}
 	return template;
+}
+
+export async function quickPost(target, body) {
+	const res = await fetch(target, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(body),
+	});
+
+	return res;
 }
 
 export default quickLoadJSON;

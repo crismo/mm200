@@ -1,5 +1,9 @@
 //#region Imports
-import { quickLoadJSON, quickLoadeTemplate } from "./modules/quickLoade.js";
+import {
+	quickLoadJSON,
+	quickLoadeTemplate,
+	quickPost,
+} from "./modules/quickLoade.js";
 import {
 	createInstanceOfTemplate,
 	renderRequiermentSetUsingTemplate,
@@ -12,6 +16,8 @@ import {
 	REQUIERMENTS_SECTION_TEMPLATE_PATH,
 	REQUIERMENTS_SECTION_ITEM_TEMPLATE_PATH,
 	ABOUT_TEMPLATE_PATH,
+	ABOUT_TEMPLATE_NO_SIGNUP_PATH,
+	IS_SIGNUP_ACTIVE,
 } from "./modules/settings.js";
 
 //#endregion
@@ -26,6 +32,9 @@ const requiermentItemTemplate = await quickLoadeTemplate(
 );
 
 const abouteTemplate = await quickLoadeTemplate(ABOUT_TEMPLATE_PATH);
+const abouteNoSignupTemplate = await quickLoadeTemplate(
+	ABOUT_TEMPLATE_NO_SIGNUP_PATH
+);
 
 const requierments = await quickLoadJSON(REQUIERMENTS_URLS);
 //#endregion
@@ -39,38 +48,39 @@ const appNav = document.getElementById("appNav");
 
 //#region app navigation
 
-const aboutAppAction = createAppNavElement("Om prosjektet", true, (e) => {
+const aboutAppAction = createAppNavElement("Om", true, (e) => {
 	devLog("About app section triggerd");
 	clearContent();
 	setActive(aboutAppAction);
-	container.innerHTML = abouteTemplate;
+	container.innerHTML = IS_SIGNUP_ACTIVE
+		? abouteTemplate
+		: abouteNoSignupTemplate;
 
-	document.getElementById("velgbt").onclick = (e) => {
-		const valg = document.getElementById("valg");
-		const name = document.getElementById("name").value;
-		const epost = document.getElementById("epost").value;
-		if (valg.selectedIndex && name && epost) {
-			const info = {
-				navn: name,
-				epost: epost,
-				valg: valg[valg.selectedIndex].value,
-			};
-
-			fetch("/valg", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(info),
-			}).then((data) => {
-				if (data.status === 200) {
-					alert("ok");
+	if (IS_SIGNUP_ACTIVE) {
+		document.getElementById("velgbt").onclick = (e) => {
+			const bt = document.getElementById("velgbt");
+			const valg = document.getElementById("valg");
+			const name = document.getElementById("name").value;
+			const epost = document.getElementById("epost").value;
+			if (valg.selectedIndex && name && epost) {
+				const info = {
+					navn: name,
+					epost: epost,
+					valg: valg[valg.selectedIndex].value,
+				};
+				const res = quickPost("/valg", info);
+				if (res.status === 200) {
+					alert("ok, registrert");
+					valg.disabled = true;
+					name.disabled = true;
+					epost.disabled = true;
+					bt.disabled = true;
 				}
-			});
-		} else {
-			alert("Du må gjøre et valg og skrive inn stuff");
-		}
-	};
+			} else {
+				alert("Du må gjøre et valg og skrive inn stuff");
+			}
+		};
+	}
 });
 
 const todoAppAction = createAppNavElement("ToDo App", false, (e) => {
@@ -94,6 +104,8 @@ const gameAppAction = createAppNavElement("Game App", false, (e) => {
 	devLog("Game section triggerd");
 	baseAction(gameAppAction, requierments[REQUIERMENTS_ID.GAME_REQ]);
 });
+
+const groupAppAction = createAppNavElement("Gruppe", false, (e) => {});
 
 function baseAction(activeAction, dataset) {
 	clearContent();
@@ -126,7 +138,18 @@ const appAcctions = [
 	gameAppAction,
 ];
 
+if (window.location.hash) {
+	appAcctions.push(groupAppAction);
+}
+
 appAcctions.forEach((action) => appNav.appendChild(action));
+
+if (window.location.hash) {
+	groupAppAction.querySelector("button").click(this);
+} else {
+	// Hack to select the first nav item
+	aboutAppAction.querySelector("button").click(this);
+}
 
 //#endregion
 
@@ -159,5 +182,3 @@ function download(filename, text) {
 
 	document.body.removeChild(element);
 }
-
-aboutAppAction.querySelector("button").click(this);
