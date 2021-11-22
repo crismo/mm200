@@ -17,6 +17,7 @@ import {
 	REQUIERMENTS_SECTION_ITEM_TEMPLATE_PATH,
 	ABOUT_TEMPLATE_PATH,
 	ABOUT_TEMPLATE_NO_SIGNUP_PATH,
+	GROUP_TEMPLATE_PATH,
 	IS_SIGNUP_ACTIVE,
 } from "./modules/settings.js";
 
@@ -35,6 +36,8 @@ const abouteTemplate = await quickLoadeTemplate(ABOUT_TEMPLATE_PATH);
 const abouteNoSignupTemplate = await quickLoadeTemplate(
 	ABOUT_TEMPLATE_NO_SIGNUP_PATH
 );
+
+const groupTemplate = await quickLoadeTemplate(GROUP_TEMPLATE_PATH);
 
 const requierments = await quickLoadJSON(REQUIERMENTS_URLS);
 //#endregion
@@ -105,7 +108,12 @@ const gameAppAction = createAppNavElement("Game App", false, (e) => {
 	baseAction(gameAppAction, requierments[REQUIERMENTS_ID.GAME_REQ]);
 });
 
-const groupAppAction = createAppNavElement("Gruppe", false, (e) => {});
+const groupAppAction = createAppNavElement("Gruppe", false, (e) => {
+	// Gruppe medlemer
+	// Oppgave
+	// Rapport template.
+	// Rubricks
+});
 
 function baseAction(activeAction, dataset) {
 	clearContent();

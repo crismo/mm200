@@ -5,25 +5,124 @@
 			"title": "Generelle krav.",
 			"description": "Krav som gjelder uansett hvilken oppgave du velger og som må være fullført uansett.",
 			"items": [
-				{ "description": "Dokumentert prosjekt prossess." },
-				{ "description": "GitHub for source control." },
 				{
-					"description": "Normal usage of git for project work (branching, pull request)."
+					"description": "Dokumentert prosjekt prossess.",
+					"points": {
+						"good": { "points": 5, "desc": "" },
+						"ok": { "points": 3, "desc": "" },
+						"bad": { "points": 1, "desc": "" },
+						"missing": { "points": 0, "desc": "" }
+					}
 				},
-				{ "description": "No third-party code (unless specifically allowed" },
-				{ "description": "Data persisted in a Postgres database." },
+
 				{
-					"description": "Documented REST API for communication between client and server."
+					"description": "GitHub for source control.",
+					"points": {
+						"good": { "points": 5, "desc": "" },
+						"ok": { "points": 3, "desc": "" },
+						"bad": { "points": 1, "desc": "" },
+						"missing": { "points": 0, "desc": "" }
+					}
 				},
 				{
-					"description": "No communication between client and server aside from REST API"
+					"description": "Normal usage of git for project work (branching, pull request).",
+					"points": {
+						"good": { "points": 5, "desc": "" },
+						"ok": { "points": 3, "desc": "" },
+						"bad": { "points": 1, "desc": "" },
+						"missing": { "points": 0, "desc": "" }
+					}
 				},
-				{ "description": "Not persisted password in plain text" },
-				{ "description": "JSON as data transport format." },
-				{ "description": "Responsive HTML5 client" },
-				{ "description": "The application must run on Heroku" },
-				{ "description": "The application must work in FireFox" },
-				{ "description": "Project report." }
+				{
+					"description": "No third-party code (unless specifically allowed",
+					"points": {
+						"good": { "points": 5, "desc": "" },
+						"ok": { "points": 3, "desc": "" },
+						"bad": { "points": 1, "desc": "" },
+						"missing": { "points": 0, "desc": "" }
+					}
+				},
+				{
+					"description": "Data persisted in a Postgres database.",
+					"points": {
+						"good": { "points": 5, "desc": "" },
+						"ok": { "points": 3, "desc": "" },
+						"bad": { "points": 1, "desc": "" },
+						"missing": { "points": 0, "desc": "" }
+					}
+				},
+				{
+					"description": "Documented REST API for communication between client and server.",
+					"points": {
+						"good": { "points": 5, "desc": "" },
+						"ok": { "points": 3, "desc": "" },
+						"bad": { "points": 1, "desc": "" },
+						"missing": { "points": 0, "desc": "" }
+					}
+				},
+				{
+					"description": "No communication between client and server aside from REST API",
+					"points": {
+						"good": { "points": 5, "desc": "" },
+						"ok": { "points": 3, "desc": "" },
+						"bad": { "points": 1, "desc": "" },
+						"missing": { "points": 0, "desc": "" }
+					}
+				},
+				{
+					"description": "Not persisted password in plain text",
+					"points": {
+						"good": { "points": 5, "desc": "" },
+						"ok": { "points": 3, "desc": "" },
+						"bad": { "points": 1, "desc": "" },
+						"missing": { "points": 0, "desc": "" }
+					}
+				},
+				{
+					"description": "JSON as data transport format.",
+					"points": {
+						"good": { "points": 5, "desc": "" },
+						"ok": { "points": 3, "desc": "" },
+						"bad": { "points": 1, "desc": "" },
+						"missing": { "points": 0, "desc": "" }
+					}
+				},
+				{
+					"description": "Responsive HTML5 client",
+					"points": {
+						"good": { "points": 5, "desc": "" },
+						"ok": { "points": 3, "desc": "" },
+						"bad": { "points": 1, "desc": "" },
+						"missing": { "points": 0, "desc": "" }
+					}
+				},
+				{
+					"description": "The application must run on Heroku",
+					"points": {
+						"good": { "points": 5, "desc": "" },
+						"ok": { "points": 3, "desc": "" },
+						"bad": { "points": 1, "desc": "" },
+						"missing": { "points": 0, "desc": "" }
+					}
+				},
+				{
+					"description": "The application must work in FireFox",
+					"points": {
+						"good": { "points": 5, "desc": "" },
+						"ok": { "points": 3, "desc": "" },
+						"bad": { "points": 1, "desc": "" },
+						"missing": { "points": 0, "desc": "" }
+					}
+				},
+				{
+					"description": "Project report.",
+					"points": {
+						"good": { "points": 5, "desc": "" },
+						"ok": { "points": 3, "desc": "" },
+						"bad": { "points": 1, "desc": "" },
+						"missing": { "points": 0, "desc": "" }
+					}
+				}
 			]
 		}
 	]

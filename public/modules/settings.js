@@ -12,6 +12,8 @@ export const ABOUT_TEMPLATE_PATH = "./views/aboutTemplate.html";
 export const ABOUT_TEMPLATE_NO_SIGNUP_PATH =
 	"./views/aboutNoSignupTemplate.html";
 
+export const GROUP_TEMPLATE_PATH = "./views/groupTemplate.html";
+
 // Constatn identificators for all requierment sets.
 export const REQUIERMENTS_ID = {
 	GENERIC_REQ: "GENERIC_REQ",
