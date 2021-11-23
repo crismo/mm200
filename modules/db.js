@@ -67,10 +67,9 @@ class DatabaseHandler {
 	}
 
 	async getGroup(groupID) {
-		const result = await this.query(
-			"select * from groups where id=$1;",
-			groupID
-		);
+		const result = await this.query("select * from groups where id=$1;", [
+			groupID,
+		]);
 		return result instanceof Error ? result : result[0];
 	}
 }

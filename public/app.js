@@ -3,6 +3,7 @@ import {
 	quickLoadJSON,
 	quickLoadeTemplate,
 	quickPost,
+	quickLoade,
 } from "./modules/quickLoade.js";
 import {
 	createInstanceOfTemplate,
@@ -108,12 +109,48 @@ const gameAppAction = createAppNavElement("Game App", false, (e) => {
 	baseAction(gameAppAction, requierments[REQUIERMENTS_ID.GAME_REQ]);
 });
 
-const groupAppAction = createAppNavElement("Gruppe", false, (e) => {
-	// Gruppe medlemer
-	// Oppgave
-	// Rapport template.
-	// Rubricks
+const groupAppAction = createAppNavElement("Gruppe", false, async (e) => {
+	clearContent();
+	setActive(groupAppAction);
+
+	const groupId = window.location.hash.replace("#", "");
+	let template = groupTemplate;
+	try {
+		const group = await quickLoade(`/group/${groupId}`);
+		devLog(group);
+		template = groupTemplate.replace(
+			"{{#group}}",
+			group.students.reduce((prev, cur) => {
+				return `${prev}<li>${cur.name}</li>\n`;
+			}, "")
+		);
+		template = template.replace("{{#project}}", getProjectName(group.project));
+	} catch (error) {
+		devLog(error);
+	}
+	container.innerHTML = template;
+
+	const submitBT = document.getElementById("createReportBT");
+	submitBT.onclick = (e) => {
+		let reportsections = Array.from(document.querySelectorAll("textarea"));
+
+		const report = {
+			github: document.getElementById("githubURL").value,
+			heroku: document.getElementById("herokuURL").value,
+		};
+
+		reportsections.forEach((texterea) => {
+			report[texterea.id] = texterea.value;
+		});
+
+		console.log(report);
+	};
 });
+
+function getProjectName(projectID) {
+	const projects = ["Todo app", "Presentation app", "Game app"];
+	return projects[projectID - 1];
+}
 
 function baseAction(activeAction, dataset) {
 	clearContent();
@@ -190,3 +227,13 @@ function download(filename, text) {
 
 	document.body.removeChild(element);
 }
+
+function updateCharCount(source, targetID) {
+	const charLimitCount = source.getAttribute("maxlength");
+	const charCurrentCount = source.value.length;
+	const targetDisplay = document.getElementById(targetID);
+	targetDisplay.innerText = `${charCurrentCount}/${charLimitCount}`;
+	return charCurrentCount < charLimitCount;
+}
+
+window.updateCharCount = updateCharCount;

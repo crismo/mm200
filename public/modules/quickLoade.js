@@ -42,4 +42,15 @@ export async function quickPost(target, body) {
 	return res;
 }
 
+export async function quickLoade(target) {
+	let res = {};
+	try {
+		res = await fetch(target).then((data) => data.json());
+	} catch (err) {
+		console.error(err);
+	}
+
+	return res;
+}
+
 export default quickLoadJSON;
