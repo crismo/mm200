@@ -1,10 +1,16 @@
 const express = require("express");
 const DatabaseHandler = require("./modules/db.js");
-const docx = require("docx@6.0.0");
-const db = new DatabaseHandler(
-	process.env.DATABASE_URL ||
-		"postgres://mykrbeuhvowewg:837780ce6885475b65c4d9229dd52297c06d46400da877a6a1560969b9dcea19@ec2-54-154-101-45.eu-west-1.compute.amazonaws.com:5432/d57vaff3g5ja37"
-);
+const docx = require("docx");
+const {
+	AlignmentType,
+	Document,
+	HeadingLevel,
+	Packer,
+	Paragraph,
+	TextRun,
+	UnderlineType,
+} = docx;
+const db = new DatabaseHandler(process.env.DATABASE_URL || "nope");
 const server = express();
 const PORT = process.env.PORT || 8080;
 
@@ -39,24 +45,34 @@ server.get("/group/:id", async (req, res, next) => {
 	next();
 });
 
-server.post("/reportDraft", (req, res, next) => {
+server.post("/reportDraft/:id", async (req, res, next) => {
 	const input = req.body;
 
 	const doc = new Document({
+		creator: "Report drafter",
+		title: "Project report draft",
+		description: "You should use this as a starting point for your report",
 		sections: [
 			{
 				properties: {},
 				children: [
 					new Paragraph({
 						children: [
-							new TextRun("Hello World"),
+							new Paragraph({
+								text: "Project Report",
+								heading: HeadingLevel.HEADING_1,
+							}),
 							new TextRun({
-								text: "Foo Bar",
+								text: `\tGithub: ${input.github}`,
 								bold: true,
 							}),
 							new TextRun({
-								text: "\tGithub is the best",
+								text: `\Heroku: ${input.heroku}`,
 								bold: true,
+							}),
+							new Paragraph({
+								text: "About our project",
+								heading: HeadingLevel.HEADING_1,
 							}),
 						],
 					}),

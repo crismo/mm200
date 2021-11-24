@@ -131,7 +131,7 @@ const groupAppAction = createAppNavElement("Gruppe", false, async (e) => {
 	container.innerHTML = template;
 
 	const submitBT = document.getElementById("createReportBT");
-	submitBT.onclick = (e) => {
+	submitBT.onclick = async (e) => {
 		let reportsections = Array.from(document.querySelectorAll("textarea"));
 
 		const report = {
@@ -143,7 +143,36 @@ const groupAppAction = createAppNavElement("Gruppe", false, async (e) => {
 			report[texterea.id] = texterea.value;
 		});
 
-		console.log(report);
+		devLog(report);
+
+		const doc = new docx.Document({
+			sections: [
+				{
+					properties: {},
+					children: [
+						new docx.Paragraph({
+							text: "Draft report",
+							heading: docx.HeadingLevel.TITLE,
+							spacing: { after: 200 },
+						}),
+						new docx.Paragraph({
+							children: [
+								new docx.TextRun(`Github: ${report.github}`),
+								new docx.TextRun({ text: "break", break: 1 }),
+								new docx.TextRun(`Heroku: ${report.heroku}`),
+								new docx.PageBreak(),
+							],
+						}),
+					],
+				},
+			],
+		});
+
+		docx.Packer.toBlob(doc).then((blob) => {
+			console.log(blob);
+			saveAs(blob, "example.docx");
+			console.log("Document created successfully");
+		});
 	};
 });
 
