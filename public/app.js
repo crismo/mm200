@@ -3,6 +3,7 @@ import {
 	quickLoadJSON,
 	quickLoadeTemplate,
 	quickPost,
+	quickLoade,
 } from "./modules/quickLoade.js";
 import {
 	createInstanceOfTemplate,
@@ -17,6 +18,7 @@ import {
 	REQUIERMENTS_SECTION_ITEM_TEMPLATE_PATH,
 	ABOUT_TEMPLATE_PATH,
 	ABOUT_TEMPLATE_NO_SIGNUP_PATH,
+	GROUP_TEMPLATE_PATH,
 	IS_SIGNUP_ACTIVE,
 } from "./modules/settings.js";
 
@@ -35,6 +37,8 @@ const abouteTemplate = await quickLoadeTemplate(ABOUT_TEMPLATE_PATH);
 const abouteNoSignupTemplate = await quickLoadeTemplate(
 	ABOUT_TEMPLATE_NO_SIGNUP_PATH
 );
+
+const groupTemplate = await quickLoadeTemplate(GROUP_TEMPLATE_PATH);
 
 const requierments = await quickLoadJSON(REQUIERMENTS_URLS);
 //#endregion
@@ -105,7 +109,150 @@ const gameAppAction = createAppNavElement("Game App", false, (e) => {
 	baseAction(gameAppAction, requierments[REQUIERMENTS_ID.GAME_REQ]);
 });
 
-const groupAppAction = createAppNavElement("Gruppe", false, (e) => {});
+const groupAppAction = createAppNavElement("Gruppe", false, async (e) => {
+	clearContent();
+	setActive(groupAppAction);
+
+	const groupId = window.location.hash.replace("#", "");
+	let template = groupTemplate;
+	try {
+		const group = await quickLoade(`/group/${groupId}`);
+		devLog(group);
+		template = groupTemplate.replace(
+			"{{#group}}",
+			group.students.reduce((prev, cur) => {
+				return `${prev}<li>${cur.name}</li>\n`;
+			}, "")
+		);
+		template = template.replace("{{#project}}", getProjectName(group.project));
+	} catch (error) {
+		devLog(error);
+	}
+	container.innerHTML = template;
+
+	const submitBT = document.getElementById("createReportBT");
+	submitBT.onclick = async (e) => {
+		let reportsections = Array.from(document.querySelectorAll("textarea"));
+
+		const report = {
+			github: document.getElementById("githubURL").value,
+			heroku: document.getElementById("herokuURL").value,
+		};
+
+		reportsections.forEach((texterea) => {
+			report[texterea.id] = texterea.value;
+		});
+
+		devLog(report);
+
+		const doc = new docx.Document({
+			sections: [
+				{
+					properties: {},
+					children: [
+						new docx.Paragraph({
+							text: "Draft report",
+							heading: docx.HeadingLevel.TITLE,
+							spacing: { after: 200 },
+						}),
+						new docx.Paragraph({
+							children: [
+								new docx.TextRun(`Github: ${report.github}`),
+								new docx.TextRun({ text: "break", break: 1 }),
+								new docx.TextRun(`Heroku: ${report.heroku}`),
+								new docx.PageBreak(),
+							],
+						}),
+						new docx.Paragraph({
+							text: "Summary",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [
+								new docx.TextRun(report.aboutProject),
+								new docx.PageBreak(),
+							],
+						}),
+						new docx.Paragraph({
+							text: "Features",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.features)],
+						}),
+						new docx.Paragraph({
+							text: "Solutions of note",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.technical)],
+						}),
+						new docx.Paragraph({
+							text: "Known bugs and issues",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.problems)],
+						}),
+						new docx.Paragraph({
+							text: "Additional features",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.additionalFeatures)],
+						}),
+						new docx.Paragraph({
+							text: "Future improvments",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.futureImprovments)],
+						}),
+						new docx.Paragraph({
+							text: "Tecnology stack",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.tecStack)],
+						}),
+						new docx.Paragraph({
+							text: "Process",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.process)],
+						}),
+						new docx.Paragraph({
+							text: "Learning outcomes",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.outcomes)],
+						}),
+						new docx.Paragraph({
+							text: "Conclusions",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.conclusion)],
+						}),
+					],
+				},
+			],
+		});
+
+		docx.Packer.toBlob(doc).then((blob) => {
+			console.log(blob);
+			saveAs(blob, "example.docx");
+			console.log("Document created successfully");
+		});
+	};
+});
+
+function getProjectName(projectID) {
+	const projects = ["Todo app", "Presentation app", "Game app"];
+	return projects[projectID - 1];
+}
 
 function baseAction(activeAction, dataset) {
 	clearContent();
@@ -182,3 +329,13 @@ function download(filename, text) {
 
 	document.body.removeChild(element);
 }
+
+function updateCharCount(source, targetID) {
+	const charLimitCount = source.getAttribute("maxlength");
+	const charCurrentCount = source.value.length;
+	const targetDisplay = document.getElementById(targetID);
+	targetDisplay.innerText = `${charCurrentCount}/${charLimitCount}`;
+	return charCurrentCount < charLimitCount;
+}
+
+window.updateCharCount = updateCharCount;

@@ -1,0 +1,128 @@
+<div>
+    <section>
+        <h2>Project</h2>
+        {{#project}}
+        <h2>Group</h2>
+        <ul>
+            {{#group}}
+        </ul>
+    </section>
+    <section id="reportTool">
+
+        <h2>Report draft tool</h2>
+        <p>Use this tool to create the draft for your report. These are examples of sections to include. Possibly you dont need all of them.The character count is just an aproximation</p>
+        <strong>NB! This is not saved on the server.</strong>
+        <details>
+
+            <p>
+                <strong>Github URL</strong>
+            </p>
+            <input type="url" id="githubURL" required>
+
+            <p>
+                <strong>Heroku URL</strong>
+            </p>
+            <input type="url" id="herokuURL" required>
+
+            <p>
+                <strong>What was your project about</strong><br />
+                In your own words describe what the goals of the project was. (~2 paragraphs)
+            </p>
+            <textarea id="aboutProject" maxlength="500" onkeyup="updateCharCount(this,'aboutProjectLimit')"></textarea><br />
+            <label id="aboutProjectLimit"></label>
+
+            <!---------------------------------------------->
+
+            <p>
+                <strong>What features did you impliment?</strong><br />
+                Outline key features you have implemented (1 paragraph each)
+            </p>
+            <textarea id="features" onkeyup="updateCharCount(this,'featuresLimit')" maxlength="2000"></textarea><br />
+            <label id="featuresLimit"></label>
+
+            <!---------------------------------------------->
+
+            <p>
+                <strong>Interesting technical solutions</strong><br />
+                Emphasise interesting technical solutions that you have adopted (1/2 to 1 page)
+            </p>
+            <textarea id="technical" onkeyup="updateCharCount(this,'technicalLimit')" maxlength="2000"></textarea><br />
+            <label id="technicalLimit"></label>
+
+            <!---------------------------------------------->
+
+            <p>
+                <strong>Problems</strong><br />
+                Outline known non-trivial issues and causes and possible solutions (1/2 page)
+            </p>
+            <textarea id="problems" onkeyup="updateCharCount(this,'problemsLimit')" maxlength="2000"></textarea><br />
+            <label id="problemsLimit"></label>
+
+            <!---------------------------------------------->
+
+            <p>
+                <strong>Additional features</strong><br />
+                Explain and rave about functionality that is in addition to the requirements. (1 page)
+            </p>
+            <textarea id="additionalFeatures" onkeyup="updateCharCount(this,'additionalFeaturesLimit')" maxlength="2500"></textarea><br />
+            <input disabled id="additionalFeaturesLimit"></input>
+
+            <!---------------------------------------------->
+
+            <p>
+                <strong>Future improvments</strong><br />
+                Discuss future improvements. (1/2 page)
+            </p>
+            <textarea id="futureImprovments" onkeyup="updateCharCount(this,'futureImprovmentsLimit')" maxlength="1000"></textarea><br />
+            <input disabled id="futureImprovmentsLimit"></input>
+
+            <!---------------------------------------------->
+
+            <p>
+                <strong>Tecnology stack</strong><br />
+                Comment on the technology stack. (1/2 page)
+            </p>
+            <textarea id="tecStack" onkeyup="updateCharCount(this,'tecStackLimit')" maxlength="1000"></textarea><br />
+            <input disabled id="tecStackLimit"></input>
+
+            <!---------------------------------------------->
+
+            <p>
+                <strong>Process</strong><br />
+                Outline the project process (how your group worked) and reflect. (1/2 to 1 page)
+            </p>
+            <textarea id="process" onkeyup="updateCharCount(this,'processLimit')" maxlength="2500"></textarea><br />
+            <input disabled id="processLimit"></input>
+
+            <!---------------------------------------------->
+
+            <p>
+                <strong>Learning outcomes</strong><br />
+                Summarise learning outcomes. (1/2 to 1 page)
+            </p>
+            <textarea id="outcomes" onkeyup="updateCharCount(this,'outcomesLimit')" maxlength="2500"></textarea><br />
+            <input disabled id="outcomesLimit"></input>
+
+            <!---------------------------------------------->
+
+            <p>
+                <strong>Conclusions</strong><br />
+                Have some sort of conclusion that sums up your work, learning etc.(1/2 to 1 page)
+            </p>
+            <textarea id="conclusion" onkeyup="updateCharCount(this,'conclusionLimit')" maxlength="1500"></textarea><br />
+            <input disabled id="conclusionLimit"></input>
+        </details>
+        <br>
+        <button id="createReportBT">Generer rapport utkast</button>
+    </section>
+    <section>
+        <h2>Rubriks</h2>
+        <p>
+            Interactive tool to estimate project grade.
+        </p>
+        <details>
+            Not available yet.
+        </details>
+    </section>
+
+</div>
