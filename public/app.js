@@ -163,6 +163,79 @@ const groupAppAction = createAppNavElement("Gruppe", false, async (e) => {
 								new docx.PageBreak(),
 							],
 						}),
+						new docx.Paragraph({
+							text: "Summary",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [
+								new docx.TextRun(report.aboutProject),
+								new docx.PageBreak(),
+							],
+						}),
+						new docx.Paragraph({
+							text: "Features",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.features)],
+						}),
+						new docx.Paragraph({
+							text: "Solutions of note",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.technical)],
+						}),
+						new docx.Paragraph({
+							text: "Known bugs and issues",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.problems)],
+						}),
+						new docx.Paragraph({
+							text: "Additional features",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.additionalFeatures)],
+						}),
+						new docx.Paragraph({
+							text: "Future improvments",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.futureImprovments)],
+						}),
+						new docx.Paragraph({
+							text: "Tecnology stack",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.tecStack)],
+						}),
+						new docx.Paragraph({
+							text: "Process",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.process)],
+						}),
+						new docx.Paragraph({
+							text: "Learning outcomes",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.outcomes)],
+						}),
+						new docx.Paragraph({
+							text: "Conclusions",
+							heading: docx.HeadingLevel.HEADING_1,
+						}),
+						new docx.Paragraph({
+							children: [new docx.TextRun(report.conclusion)],
+						}),
 					],
 				},
 			],
